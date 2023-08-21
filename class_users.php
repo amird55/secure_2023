@@ -33,6 +33,21 @@ class users {
         }
 
     }
+    public function UpdateUser($params){
+        $id=isset($params['id']) ? $params['id'] : -1;
+        $uname=isset($params['username']) ? $params['username'] : "";
+        $valid_until=isset($params['valid_until'])   ? $params['valid_until']   : "";
+
+        if($id > 0 ) {
+            $q = "UPDATE `users` SET  ";
+            $q .= "`username`='$uname' , ";
+            $q .= "`valid_until`='$valid_until'  ";
+            $q .= " WHERE id=$id ";
+
+            $result = mysqli_query($this->mysql, $q);
+        }
+
+    }
     public function GetList(){
         $q  = "SELECT * FROM `users` ";
         $result = mysqli_query($this->mysql, $q);
@@ -41,5 +56,12 @@ class users {
             $data[]=$row;
         }
         return $data;
+    }
+    public function GetUser($id){
+        $q  = "SELECT * FROM `users` ";
+        $q .= " WHERE id=$id";
+        $result = mysqli_query($this->mysql, $q);
+        $row=mysqli_fetch_assoc($result);
+        return $row;
     }
 }

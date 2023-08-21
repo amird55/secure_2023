@@ -23,12 +23,14 @@ $uList = $user_obj->GetList();
 <h1>users list</h1>
 <table>
     <tr>
+        <th></th>
         <th>משתמש</th>
         <th>valid until</th>
     </tr>
     <?php
     foreach ($uList as $row) { ?>
         <tr>
+            <td><a href="./editUser.php?rid=<?= $row['id'] ?>">edit</a> </td>
             <td><?= $row['username'] ?></td>
             <td><?= $row['valid_until'] ?></td>
         </tr>
