@@ -31,7 +31,7 @@ $uList = $user_obj->GetList();
     foreach ($uList as $row) { ?>
         <tr>
             <td><a href="./editUser.php?rid=<?= $row['id'] ?>">edit</a> </td>
-            <td><?= $row['username'] ?></td>
+            <td><?= htmlspecialchars($row['username']) ?></td>
             <td><?= $row['valid_until'] ?></td>
         </tr>
     <?php } ?>

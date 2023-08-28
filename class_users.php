@@ -29,6 +29,7 @@ class users {
             $q = "INSERT INTO `users` ( `username`, `pass`, `valid_until`) ";
             $q .= " VALUES ( '$uname', '$enc_pass', '$valid_until')";
 
+//                echo "q=$q <br/>";
             $result = mysqli_query($this->mysql, $q);
         }
 

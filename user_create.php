@@ -1,5 +1,5 @@
 <?php
-var_dump($_GET);
+//var_dump($_GET);
 include "mysql_conn.php";
 $mysql_obj = new mysql_conn();
 $mysql=$mysql_obj->GetConn();
