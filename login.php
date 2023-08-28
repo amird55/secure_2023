@@ -12,12 +12,13 @@ if(isset($_GET['btnPressed'])) {
     $pass = (isset($_GET['pass'])) ? $_GET['pass'] : "";
     if (($gss < 4) && ($users_obj->IsValid($uname, $pass))) {
         $_SESSION['ValidUser']=$uname;
+        $_SESSION['TOKEN']= substr(md5(rand(100,999)),0,10);
         setcookie("MyUser",$uname);
         header("location:page1.php");
     }
     else{
         setcookie("MyUser",0);
-        echo "try again";
+        echo "try again  ".htmlspecialchars($uname);
         $gss++;
     }
 }

@@ -1,13 +1,16 @@
 <?php
+session_start();
 //var_dump($_GET);
 include "mysql_conn.php";
 $mysql_obj = new mysql_conn();
 $mysql=$mysql_obj->GetConn();
 
 if(isset($_GET['SendBtn'])) {
-    include "class_users.php";
-    $user_ubj = new users($mysql);
-    $user_ubj->CreateUser($_GET);
+    if(isset($_GET['token']) && ($_GET['token'] == $_SESSION['TOKEN']) ){
+        include "class_users.php";
+        $user_ubj = new users($mysql);
+        $user_ubj->CreateUser($_GET);
+    }
 }
 
 ?>
@@ -22,6 +25,7 @@ if(isset($_GET['SendBtn'])) {
 </head>
 <body>
 <form action="" method="get">
+    <input type="hidden" name="token" value="<?= $_SESSION['TOKEN'] ?>" />
     <input type="text" name="username" placeholder="your username" />
     <br>
     <input type="text" name="passwd" placeholder="your password" />
