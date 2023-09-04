@@ -35,13 +35,21 @@ $_SESSION['gss']=$gss;
     <title>login</title>
 </head>
 <body>
-<form action="" method="get">
-    <input type="text" name="uname" placeholder="user name" />
+<form action="" method="get" onsubmit=" checkForm();return false;">
+    <input type="text" id="uname" name="uname" placeholder="user name" />
     <br>
     <input type="text" name="pass" placeholder="password" />
     <br>
     <button name="btnPressed" value="1">send</button>
 </form>
-
+<script>
+    function checkForm(){
+        let el=document.getElementById("uname").value;
+        console.log(el)
+        if(el.contains("'"))
+            return false;
+        return true
+    }
+</script>
 </body>
 </html>

@@ -10,9 +10,13 @@ class users {
         return md5("W".$p."23");
     }
     public function IsValid($u,$p){
+//        $u=(int)$u; // הגנה כנגד הזרקה עבור מספרים //
+        $u=addslashes($u); // הגנה כנגד הזרקה עבור מחרוזת //
         $enc_pass = $this->EncPass($p);
         $q  = "SELECT * FROM `users` ";
+//        $q .= " WHERE username='52\' or (1=1) -- '' AND pass='$enc_pass' ";
         $q .= " WHERE username='$u' AND pass='$enc_pass' ";
+        echo "q=$q <br/>";
         $result = mysqli_query($this->mysql, $q);
 
         if(mysqli_num_rows($result)>0)
